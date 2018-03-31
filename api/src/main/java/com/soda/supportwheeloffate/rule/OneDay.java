@@ -1,14 +1,17 @@
 package com.soda.supportwheeloffate.rule;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author aneel
  */
-public class OneDay implements Rule{
+public class OneDay implements Rule {
 
     @Override
-    public boolean isValid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isValid(List<String> shifts, String engineer) {
+        return Collections.frequency(shifts, engineer) == 2;
     }
-    
+
 }

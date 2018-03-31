@@ -1,8 +1,9 @@
 package com.soda.supportwheeloffate.service;
 
-import com.soda.supportwheeloffate.vo.Engineer;
+import com.soda.supportwheeloffate.helper.EngineerFactory;
+import com.soda.supportwheeloffate.rule.ConsectiveDay;
+import com.soda.supportwheeloffate.rule.OneDay;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class ScheduleService {
 
-    public List<String> getSchedule(Engineer engineers) {
+    public List<String> getSchedule(List<String> engineers) {
         List<String> schedule;
         while (true) {
             System.out.println(".........");
@@ -29,7 +30,7 @@ public class ScheduleService {
     }
 
     public List<String> generateSchedule(List<String> shifts) {
-        Engineer e = new Engineer();
+        EngineerFactory e = new EngineerFactory();
         int i = 0;
         int count = 0;
         List<String> toBeProcessed = e.getEngineers();
@@ -39,10 +40,10 @@ public class ScheduleService {
             if (!isLastElement(shifts)) {
                 break;
             }
-            if (isOneDayCompleted(shifts, engineer)) {
+            if (new OneDay().isValid(shifts, engineer)) {
                 toBeProcessed = e.removeEngineerWithOneDayCompleted(toBeProcessed, engineer);
             } else {
-                if (isValid(shifts, engineer, i)) {
+                if (new ConsectiveDay().isValid(shifts, engineer, i)) {
                     shifts.set(i, engineer);
                     i++;
                 }
@@ -59,36 +60,36 @@ public class ScheduleService {
         return shifts;
     }
 
-    private boolean isOneDayCompleted(List<String> shifts, String engineer) {
-        return Collections.frequency(shifts, engineer) == 2;
-    }
+//    private boolean isOneDayCompleted(List<String> shifts, String engineer) {
+//        return Collections.frequency(shifts, engineer) == 2;
+//    }
 
-    private boolean isValid(List<String> shifts, String engineer, int j) {
-        /**
-         * Checks for shift if it is morning or afternoon all the evens are
-         * morning and all the odds are afternoon
-         */
-        int i = j;
-        if (i < 1) {
-            return true;
-        }
-
-        if (i % 2 == 0) {
-            if (shifts.get(i - 1).equals(engineer)
-                    || shifts.get(i - 2).equals(engineer)) {
-                return false;
-            }
-        } else if (i >= 3) {
-            if (shifts.get(i - 1).equals(engineer)
-                    || shifts.get(i - 2).equals(engineer)
-                    || shifts.get(i - 3).equals(engineer)) {
-                return false;
-            }
-        } else if (shifts.get(i - 1).equals(engineer)) {
-            return false;
-        }
-        return true;
-    }
+//    private boolean isValid(List<String> shifts, String engineer, int j) {
+//        /**
+//         * Checks for shift if it is morning or afternoon all the evens are
+//         * morning and all the odds are afternoon
+//         */
+//        int i = j;
+//        if (i < 1) {
+//            return true;
+//        }
+//
+//        if (i % 2 == 0) {
+//            if (shifts.get(i - 1).equals(engineer)
+//                    || shifts.get(i - 2).equals(engineer)) {
+//                return false;
+//            }
+//        } else if (i >= 3) {
+//            if (shifts.get(i - 1).equals(engineer)
+//                    || shifts.get(i - 2).equals(engineer)
+//                    || shifts.get(i - 3).equals(engineer)) {
+//                return false;
+//            }
+//        } else if (shifts.get(i - 1).equals(engineer)) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     private boolean isLastElement(List<String> shifts) {
         return shifts.get(shifts.size() - 1).isEmpty();

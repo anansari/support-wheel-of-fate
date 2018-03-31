@@ -1,7 +1,6 @@
-package com.soda.supportwheeloffate.vo;
+package com.soda.supportwheeloffate.helper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -9,9 +8,9 @@ import java.util.Random;
  *
  * @author aneel
  */
-public class Engineer {
+public class EngineerFactory {
 
-    private final Random randomGenerator = new Random(System.nanoTime());
+    private final Random randomGenerator = new Random();
     private final List<String> engineers = new ArrayList<String>() {
         {
             add("Foo_1");
