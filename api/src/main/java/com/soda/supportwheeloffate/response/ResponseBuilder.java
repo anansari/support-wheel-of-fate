@@ -56,34 +56,4 @@ public class ResponseBuilder {
         }
         return day;
     }
-    
-
-//    public List<Schedule> build(List<String> shifts) {
-//        List<Schedule> schedules = new ArrayList<>();
-//        int i = 0;
-//
-//        for (String shf : shifts) {
-//            Schedule schedule = new Schedule();
-//            if (i % 2 == 0) {
-//                schedule.setShift(Shift.MORNING);
-//            } else {
-//                schedule.setShift(Shift.EVENING);
-//            }
-//
-//            if (i == 0) {
-//                schedule.setDay(days[0]);
-//            } else {
-//                if (i > 5) {
-//                    schedule.setDay(days[4]);
-//                } else {
-//                    schedule.setDay(days[i - 1]);
-//                }
-//            }
-//
-//            schedule.setEngineer(shf);
-//            i++;
-//            schedules.add(schedule);
-//        }
-//        return schedules;
-//    }
 }
