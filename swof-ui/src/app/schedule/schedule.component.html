@@ -1,0 +1,17 @@
+<div>
+  <h4>Schedule for next 2 weeks. Starting from coming Monday:</h4>
+
+  
+  <table id="customers">
+    <tr>
+      <th>Day</th>
+      <th>Shift</th>
+      <th>Engineer</th>
+    </tr>
+    <tr *ngFor="let schedule of results">
+      <td>{{ schedule.day }}</td>
+      <td>{{ schedule.shift }}</td>
+      <td>{{ schedule.engineer }}</td>
+    </tr>
+  </table>
+</div>
