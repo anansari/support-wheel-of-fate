@@ -15,7 +15,6 @@ public class ScheduleService {
     public List<String> getSchedule() {
         List<String> schedule;
         while (true) {
-            System.out.println(".........");
             List<String> shifts = Arrays.asList(new String[20]);
 
             for (int i = 0; i < shifts.size(); i++) {
@@ -49,9 +48,6 @@ public class ScheduleService {
                 }
             }
             if (count >= 100) {
-                System.out.println(i);
-                System.out.println("scheduling for " + engineer);
-                System.out.println(shifts);
                 break;
             }
             count++;

@@ -5,6 +5,9 @@ import com.soda.supportwheeloffate.response.ResponseBuilder;
 import com.soda.supportwheeloffate.service.ScheduleService;
 import com.soda.supportwheeloffate.vo.Schedule;
 import java.util.List;
+import spark.Filter;
+import static spark.Spark.after;
+import static spark.Spark.get;
 
 /**
  *
@@ -17,14 +20,18 @@ public class ScheduleController {
         to run 
         mvn exec:java -Dexec.mainClass="com.soda.supportwheeloffate.ScheduleCtroller"
         mvn exec:java
-        visit http://localhost:4567/hello
+        visit http://localhost:4567/schedule
          */
-//                get("/hello", (req, res) -> new ScheduleService().generateSchedule());
+        after((Filter) (request, response) -> {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Methods", "GET");
+        });
 
-        List<Schedule> schedule = new ResponseBuilder().build(new ScheduleService().getSchedule());
-	Gson gson = new Gson();
+        get("/schedule", (request, response) -> {
+            response.type("application/json");
 
-        System.out.println(gson.toJson(schedule));
-                //        System.out.println(Collections.frequency(engineers, "Foo_5") < 3);
+            List<Schedule> schedule = new ResponseBuilder().build(new ScheduleService().getSchedule());
+            return new Gson().toJson(schedule);
+        });
     }
 }

@@ -13,16 +13,16 @@ public class EngineerFactory {
     private final Random randomGenerator = new Random();
     private final List<String> engineers = new ArrayList<String>() {
         {
-            add("Foo_1");
-            add("Foo_2");
-            add("Foo_3");
-            add("Foo_4");
-            add("Foo_5");
-            add("Foo_6");
-            add("Foo_7");
-            add("Foo_8");
-            add("Foo_9");
-            add("Foo_10");
+            add("James 'Logan' Howlett");
+            add("Charles Francis Xavier");
+            add("Scott Summers");
+            add("Robert Louis 'Bobby' Drake");
+            add("Jean Elaine Grey");
+            add("Ororo Monroe");
+            add("Anna Marie");
+            add("Erik Magnus Lehnsherr");
+            add("Calvin Montgomery Rankin");
+            add("Suzanne Chan");
         }
     };
 
